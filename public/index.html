@@ -1,0 +1,33 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hi Philip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+
+<body>
+<script src="./dist/bundle.js"></script>
+<div class="container h-100 d-flex justify-content-center align-items-center flex-column">
+    <div class="row m-2">
+        <div class="col d-flex justify-content-center align-items-center h-100">
+            <button type="button" id="inMeeting" class="btn btn-danger btn-lg m-2" onclick="module.setStatus(true)">In a meeting <i
+                    class="fa-solid fa-ban"></i></button>
+            <button type="button" id="notInMeeting" class="btn btn-success btn-lg m-2" disabled onclick="module.setStatus(false)">Not in a meeting <i
+                    class="fa-solid fa-thumbs-up"></i></button>
+
+            <button class="btn btn-primary btn-lg m-2" onclick="module.getStatus()">Get status</button>
+        </div>
+    </div>
+    <div class="row m-2 d-flex justify-content-center">
+        <h1 id="status">Come on in!</h1>
+    </div>
+</div>
+</body>
+
+</html>
