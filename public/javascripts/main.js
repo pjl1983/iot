@@ -12,7 +12,6 @@ const exports = {
     })
   },
   setValue(inMeeting) {
-    console.log('status: ', status);
     if (inMeeting === true) {
       document.getElementById('status').innerText = "Go away!";
       document.getElementById('inMeeting').setAttribute('disabled', '');
