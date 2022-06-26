@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "browserify public/javascripts/main.js -o public/javascripts/bundle.js",
+    "build": "browserify public/javascripts/main.js --s module > public/dist/bundle.js",
     "start": "node ./bin/www"
   },
   "dependencies": {

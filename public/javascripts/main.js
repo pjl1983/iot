@@ -1,14 +1,14 @@
 const axios = require('axios').default;
 
-const exports = {
+module.exports = {
   setStatus(val) {
     axios.post('/set', {status: val}).then((response) => {
-      exports.setValue(response.data.status);
+      this.setValue(response.data.status);
     })
   },
   getStatus() {
     axios.get('/get').then((response) => {
-      exports.setValue(response.data.status);
+      this.setValue(response.data.status);
     })
   },
   setValue(inMeeting) {
@@ -23,5 +23,3 @@ const exports = {
     }
   }
 };
-
-module.exports = exports;

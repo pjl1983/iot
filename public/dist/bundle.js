@@ -4385,26 +4385,20 @@ process.chdir = function (dir) {
 process.umask = function() { return 0; };
 
 },{}],37:[function(require,module,exports){
-"use strict";
+const axios = require('axios').default;
 
-var axios = require('axios')["default"];
-
-var _exports = {
-  setStatus: function setStatus(val) {
-    axios.post('/set', {
-      status: val
-    }).then(function (response) {
-      _exports.setValue(response.data.status);
-    });
+module.exports = {
+  setStatus(val) {
+    axios.post('/set', {status: val}).then((response) => {
+      this.setValue(response.data.status);
+    })
   },
-  getStatus: function getStatus() {
-    axios.get('/get').then(function (response) {
-      _exports.setValue(response.data.status);
-    });
+  getStatus() {
+    axios.get('/get').then((response) => {
+      this.setValue(response.data.status);
+    })
   },
-  setValue: function setValue(inMeeting) {
-    console.log('status: ', status);
-
+  setValue(inMeeting) {
     if (inMeeting === true) {
       document.getElementById('status').innerText = "Go away!";
       document.getElementById('inMeeting').setAttribute('disabled', '');
@@ -4416,7 +4410,6 @@ var _exports = {
     }
   }
 };
-module.exports = _exports;
 
 },{"axios":1}]},{},[37])(37)
 });
