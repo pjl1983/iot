@@ -14,13 +14,13 @@
 <body>
 <script src="./dist/bundle.js"></script>
 <div class="container h-100 d-flex justify-content-center align-items-center flex-column">
-    <div class="row m-2">
-        <div class="col d-flex justify-content-center align-items-center h-100">
-            <button type="button" id="inMeeting" class="btn btn-danger btn-lg m-2" onclick="window.module.setStatus(true)">In a meeting <i
+    <div class="row m-2 w-100">
+        <div class="col d-flex justify-content-center align-items-center h-100 flex-column flex-md-row">
+            <button type="button" id="inMeeting" class="btn btn-danger btn-lg m-2 w-100" onclick="window.module.setStatus(true)">In a meeting <i
                     class="fa-solid fa-ban"></i></button>
-            <button type="button" id="notInMeeting" class="btn btn-success btn-lg m-2" disabled onclick="window.module.setStatus(false)">Not in a meeting <i
+            <button type="button" id="notInMeeting" class="btn btn-success btn-lg m-2 w-100" disabled onclick="window.module.setStatus(false)">Not in a meeting <i
                     class="fa-solid fa-thumbs-up"></i></button>
-            <button class="btn btn-primary btn-lg m-2" onclick="module.getStatus()">Get status</button>
+            <button class="btn btn-primary btn-lg m-2 w-100" onclick="module.getStatus()">Get status</button>
         </div>
     </div>
     <div class="row m-2 d-flex justify-content-center">
