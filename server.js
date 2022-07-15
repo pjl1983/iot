@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -13,4 +13,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
-app.listen(port, () => console.log(`App is listening on port ${port}`));
+app.listen(port, function(err){
+  if (err) console.log(err);
+  console.log("Server listening on port:", port);
+});
