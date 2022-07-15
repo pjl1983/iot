@@ -4,10 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hi Philip</title>
+    <title>Are you in a meeting?</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 
@@ -15,17 +18,16 @@
 <script src="./dist/bundle.js"></script>
 <div class="container h-100 d-flex justify-content-center align-items-center flex-column">
     <div class="row m-2 w-100">
-        <div class="col d-flex justify-content-center align-items-center h-100 flex-column flex-md-row">
+        <div class="col d-flex justify-content-center align-items-center flex-column h-100">
+            <h2 class="mb-4 text-light font-weight-bold">Set your meeting status</h2>
             <label class="switch">
                 <input type="checkbox" id="toggleSwitch" onchange="window.module.setStatus(checked)">
-                <span class="slider round"></span>
+                <span class="slider round d-flex align-items-center justify-content-end">
+                    <div id="status" class="status"></div>
+                </span>
             </label>
         </div>
     </div>
-    <div class="row m-2 d-flex justify-content-center">
-        <h1 id="status">Come on in!</h1>
-    </div>
 </div>
 </body>
-
 </html>
