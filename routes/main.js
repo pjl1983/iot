@@ -6,8 +6,16 @@ let status = false;
 const server = require('socket.io').Server;
 const io = new server();
 
-io.on("connection", () => {
-  console.log('Server socket.io connection established')
+let sequenceNumberByClient = new Map();
+
+io.on("connection", (socket) => {
+  console.log('Server socket.io connection established');
+  sequenceNumberByClient.set(socket, 1);
+
+  socket.on("disconnect", () => {
+    sequenceNumberByClient.delete(socket);
+    console.info(`Client gone [id=${socket.id}]`);
+  });
 });
 
 io.listen(3001);
