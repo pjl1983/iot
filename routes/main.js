@@ -5,7 +5,11 @@ let status = false;
 const port = 3000;
 
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: "*"
+  }
+});
 let sequenceNumberByClient = new Map();
 
 io.on("connection", (socket) => {
