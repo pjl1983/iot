@@ -1,5 +1,5 @@
 const {io} = require("socket.io-client");
-const socket = io(':8080', {
+const socket = io(':3000', {
   reconnectionDelay: 1000,
   reconnection: true,
   reconnectionAttemps: 10,
