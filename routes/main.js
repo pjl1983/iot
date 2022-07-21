@@ -1,12 +1,16 @@
-const express = require('express');
-const app = express();
-const router = express.Router();
-let status = false;
-const port = 8080;
+const express = require('express'),
+  app = express(),
+  server = require('http').createServer(app),
+  io = require('socket.io')(server, {
+    cors: {
+      origin: ["http://localhost:3000", "https://lila-affe-spuelmaschine.herokuapp.com"],
+    },
+  }),
+  router = express.Router(),
+  port = 8080;
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-let sequenceNumberByClient = new Map();
+let status = false,
+  sequenceNumberByClient = new Map();
 
 io.on("connection", (socket) => {
   console.log('A client connected');
@@ -24,7 +28,7 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(port, (err) => {
+server.listen(port, (err) => {
   if (err) console.log(err);
   console.log("Socket.io listening on port:", port);
 });

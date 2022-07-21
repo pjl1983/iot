@@ -1,11 +1,13 @@
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const indexRouter = require('./routes/main');
+const express = require('express'),
+ app = express(),
+ port = process.env.PORT || 3000,
+ path = require('path'),
+ cookieParser = require('cookie-parser'),
+ logger = require('morgan'),
+ indexRouter = require('./routes/main'),
+ cors = require('cors');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
