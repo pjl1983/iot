@@ -1,15 +1,27 @@
-const axios = require('axios').default;
+const {io} = require("socket.io-client");
+const socket = io(':3000', {
+  reconnectionDelay: 1000,
+  reconnection: true,
+  reconnectionAttemps: 10,
+  transports: ['websocket'],
+  agent: false,
+  upgrade: false,
+  rejectUnauthorized: false
+});
 
 module.exports = {
   setStatus(val) {
-    axios.post('/set', {status: val}).then((response) => {
-      this.updateUI(response.data.status);
-    })
+    socket.emit("status", val);
   },
-  getStatus() {
-    axios.get('/get').then((response) => {
-      this.updateUI(response.data.status);
-    })
+  connect() {
+    socket.on("connect", () => {
+      console.log('Connection to socket established!');
+    });
+
+    socket.on('status', (status) => {
+      console.log('status: ', status);
+      this.updateUI(status);
+    });
   },
   updateUI(inMeeting) {
     if (inMeeting === true) {
@@ -22,4 +34,4 @@ module.exports = {
   }
 };
 
-module.exports.getStatus();
+module.exports.connect();

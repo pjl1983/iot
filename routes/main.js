@@ -1,16 +1,22 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 let status = false;
+const port = 3000;
 
-// Socket.io
-const server = require('socket.io').Server;
-const io = new server();
-
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 let sequenceNumberByClient = new Map();
 
 io.on("connection", (socket) => {
-  console.log('Server socket.io connection established');
+  console.log('A client connected');
   sequenceNumberByClient.set(socket, 1);
+  io.sockets.emit("status", status);
+
+  socket.on("status", (status) => {
+    this.status = status;
+    io.sockets.emit("status", this.status);
+  });
 
   socket.on("disconnect", () => {
     sequenceNumberByClient.delete(socket);
@@ -18,15 +24,12 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(3001);
-
-router.post('/set', function (req, res) {
-  status = (req.body.status === 'True' || req.body.status === true);
-  io.sockets.emit("status", status);
-  res.json({status});
+http.listen(port, (err) => {
+  if (err) console.log(err);
+  console.log("Socket.io listening on port:", port);
 });
 
-router.get('/get', function (req, res) {
+router.get('/status', function (req, res) {
   res.json({status});
 });
 
