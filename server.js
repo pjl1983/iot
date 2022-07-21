@@ -17,17 +17,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
-let sequenceNumberByClient = new Map(),
-  status = false;
+let sequenceNumberByClient = new Map();
 
 io.on("connection", (socket) => {
-  console.log('A client connected');
   sequenceNumberByClient.set(socket, 1);
-  io.sockets.emit("status", status);
+  io.sockets.emit("status", indexRouter.status);
 
   socket.on("status", (status) => {
-    this.status = status;
-    io.sockets.emit("status", this.status);
+    indexRouter.status = status;
+    io.sockets.emit("status", indexRouter.status);
   });
 
   socket.on("disconnect", () => {
