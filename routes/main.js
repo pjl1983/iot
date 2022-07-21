@@ -2,14 +2,10 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 let status = false;
-const port = 3000;
+const port = 8080;
 
 const http = require('http').Server(app);
-const io = require('socket.io')(http, {
-  cors: {
-    origin: "*"
-  }
-});
+const io = require('socket.io')(http);
 let sequenceNumberByClient = new Map();
 
 io.on("connection", (socket) => {
